@@ -2,12 +2,17 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
 func main() {
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "4000"
+	}
 	app := fiber.New()
 	app.Use(cors.New())
 	app.Static("/", "./client/dist")
@@ -17,6 +22,6 @@ func main() {
 			"data": "users from backend",
 		})
 	})
-	app.Listen(":4000")
-	fmt.Println("Server running in port 4000")
+	app.Listen(":" + port)
+	fmt.Println("Server running in port " + port)
 }

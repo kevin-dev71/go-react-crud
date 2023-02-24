@@ -10,7 +10,7 @@ function App() {
       <h1>Hello World</h1>
       <button
         onClick={async () => {
-          const response = await fetch('http://localhost:4000/users');
+          const response = await fetch('/users');
           const data = await response.json();
           setUsers(data.data);
         }}
